@@ -6,7 +6,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from httplib2 import Http
 from apiclient import discovery
-from covid_cases import CovidCases
+# from covid_cases import CovidCases
 
 class GoogleCalendar:
 
@@ -17,8 +17,8 @@ class GoogleCalendar:
     
         #this would be after the user allow permission to the google calendar API
         # include site  
-        self.CREDENTIALS_FILE = '/Users/rodo/Downloads/credentials.json'
-        self.get_covid_cases = CovidCases().get_cases()
+        self.CREDENTIALS_FILE = '/Users/palac/Desktop/credentials.json'
+        # self.get_covid_cases = CovidCases().get_cases()
 
 
     def get_calendar_service(self):
@@ -36,7 +36,7 @@ class GoogleCalendar:
                 creds.refresh(Request())
             else:
                 flow = InstalledAppFlow.from_client_secrets_file(
-                    CREDENTIALS_FILE, SCOPES)
+                    self.CREDENTIALS_FILE, self.SCOPES)
                 creds = flow.run_local_server(port=0)
             # Save the credentials for the next run
             with open('token.pickle', 'wb') as token:
@@ -70,5 +70,6 @@ class GoogleCalendar:
             ],
         }
 
-#s=get_calendar_service()
+s=GoogleCalendar().get_calendar_service()
+
 # recurring_event = s.events().insert(calendarId=EVENT_ID,body=event).execute()
