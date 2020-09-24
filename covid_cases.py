@@ -16,4 +16,8 @@ class CovidCases:
 
     def get_cases(self):
 
-       data = self.url.json()
+        data = self.url.json()
+
+        country_name = data['data']['name']
+
+        updated_date = data['data']['updated_at']
