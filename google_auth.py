@@ -6,9 +6,15 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from httplib2 import Http
 from apiclient import discovery
-# from covid_cases import CovidCases
+# from ApiNotifications.covid_cases import CovidCases
 
 class GoogleCalendar:
+    """
+    This class authenticates to Google calendar in order to
+    post events. Here it will post events such as covid cases
+    in the US, air quality, and weather forecast.
+
+    """
 
     def __init__(self):
         
@@ -16,19 +22,23 @@ class GoogleCalendar:
         self.SCOPES = ['https://www.googleapis.com/auth/calendar']
     
         #this would be after the user allow permission to the google calendar API
-        # include site  
+        # include site  would need path where credentials got downloaded
         self.CREDENTIALS_FILE = '/Users/palac/Desktop/credentials.json'
         # self.get_covid_cases = CovidCases().get_cases()
 
 
     def get_calendar_service(self):
+        """
+        The file token.pickle stores the user's access and refresh tokens, and is
+        created automatically when the authorization flow completes for the first
+        time.
+        """
 
         creds = None
-        # The file token.pickle stores the user's access and refresh tokens, and is
-        # created automatically when the authorization flow completes for the first
-        # time.
-        if os.path.exists('token.pickle'):
-            with open('token.pickle', 'rb') as token:
+        
+        #  User needs to safe the path locally. 
+        if os.path.exists('/Users/palac/Desktop/token.pickle'):
+            with open('/Users/palac/Desktop/token.pickle', 'rb') as token:
                 creds = pickle.load(token)
         # If there are no (valid) credentials available, let the user log in.
         if not creds or not creds.valid:
@@ -39,7 +49,7 @@ class GoogleCalendar:
                     self.CREDENTIALS_FILE, self.SCOPES)
                 creds = flow.run_local_server(port=0)
             # Save the credentials for the next run
-            with open('token.pickle', 'wb') as token:
+            with open('/Users/palac/Desktop/token.pickle', 'wb') as token:
                 pickle.dump(creds, token)
         service = build('calendar', 'v3', credentials=creds)
         return service
@@ -50,7 +60,7 @@ class GoogleCalendar:
         TIMEZONE = 'America/Los_Angeles'
         EVENT_ID = 'primary'
         event = {
-            'summary': 'Appointment with people',#will have weather,air quality , and covid cases 
+            'summary': 'COVID cases in the US today',#will have weather,air quality , and covid cases 
             'location': 'hell',
             'start': {
             'dateTime': date.today(),#'2020-09-20T10:00:00.000-07:00', #change to dynamic
