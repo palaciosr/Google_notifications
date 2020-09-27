@@ -1,13 +1,5 @@
 import requests
 
-
-
-# r = requests.get(' https://corona-api.com/timeline')
-
-r= requests.get(' http://corona-api.com/countries/US')
-print(r.json())
-
-
 class CovidCases:
 
     def __init__(self):
@@ -17,7 +9,15 @@ class CovidCases:
     def get_cases(self):
 
         data = self.url.json()
+        # print(data)
 
         country_name = data['data']['name']
-
         updated_date = data['data']['updated_at']
+        cases = data['data']['today']['confirmed']
+        deaths = data['data']['today']['deaths']
+
+        return country_name,updated_date,deaths,cases
+
+
+c,date,deaths,cases = CovidCases().get_cases()
+print(c,date,deaths,cases)
