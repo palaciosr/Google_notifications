@@ -6,7 +6,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from httplib2 import Http
 from apiclient import discovery
-# from ApiNotifications.covid_cases import CovidCases
+from Api_Notifications.covid_cases import CovidCases
 
 class GoogleCalendar:
     """
