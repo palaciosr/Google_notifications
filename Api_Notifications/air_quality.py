@@ -1,5 +1,5 @@
 import requests 
-
+from datetime import date,timedelta
 
 
 #for air quality 
@@ -24,12 +24,7 @@ print(r.json())
 # print()
 # data['data']['name']
 
-
-
 # print(data['data']['name'])
-
-
-
 
 
 #http://www.airnowapi.org/aq/forecast/zipCode/?format=application/json&
@@ -40,7 +35,15 @@ class AirQuality:
 
     def __init__(self):
 
-        self.url = requests.get('/')
+        self.zip_code = '92706'
+
+        #your api key 
+        self.api_key = ''
+
+        #today's date
+        self.date = date.today() + timedelta(1)
+
+        self.url = requests.get('http://www.airnowapi.org/aq/forecast/zip_code/?format=application/json&zipCode='+self.zip_code+'&date='+self.date+'&distance=50&API_KEY='+self.api_key)
 
 #parse through the data 
     def get_air_quality(self):
