@@ -19,9 +19,10 @@ class WeatherForecast:
     def __init__(self):
 
 
-        self.zip_code_city = input()
+        self.zip_code_city = '92706'
+        self.appid = ''
 
-        self.url = requests.get('http://api.openweathermap.org/data/2.5/weather?zip='+self.zip_code_city+'&units=imperial'+'&appid='+appid)
+        self.url = requests.get('http://api.openweathermap.org/data/2.5/weather?zip='+self.zip_code_city+'&units=imperial'+'&appid='+self.appid)
 
     def get_weather_forecast(self):
 
