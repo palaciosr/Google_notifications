@@ -28,10 +28,9 @@ class GoogleCalendar:
         # include site  would need path where credentials got downloaded
         self.CREDENTIALS_FILE = '/Users/rodo/Downloads/credentials.json'
         self.email ='palaciosr080@gmail.com'
-        self.get_covid_cases = CovidCases().get_cases()
+        self.country_name,self.updated_date,self.cases,self.deaths = CovidCases().get_cases()
         self.get_air_quality = AirQuality().get_air_quality()
-        self.get_weather_forecast = WeatherForecast().get_weather_forecast()
-
+        self.city_name,self.temperature = WeatherForecast().get_weather_forecast()
 
     def get_calendar_service(self):
         """
@@ -66,7 +65,7 @@ class GoogleCalendar:
         TIMEZONE = 'America/Los_Angeles'
         EVENT_ID = 'primary'
         event = {
-            'summary': 'COVID cases in the US today: '+ self.get_covid_cases, +' '+'the weather today is :'#will have weather,air quality , and covid cases 
+            'summary': 'COVID cases'+self.cases+ 'in the'+ self.country_name+ 'today:' + self.updated_date+ 'number of deaths: '+self.deaths +'the weather today is :' +self.temperature + 'in'+self.city_name,
             'location': 'hell',
             'start': {
             'dateTime': date.today(),#'2020-09-20T10:00:00.000-07:00', #change to dynamic
