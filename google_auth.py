@@ -7,6 +7,9 @@ from google.auth.transport.requests import Request
 from httplib2 import Http
 from apiclient import discovery
 from Api_Notifications.covid_cases import CovidCases
+from Api_Notifications.air_quality import AirQuality
+from Api_Notifications.weather_forecast import WeatherForecast
+
 
 class GoogleCalendar:
     """
@@ -23,8 +26,11 @@ class GoogleCalendar:
     
         #this would be after the user allow permission to the google calendar API
         # include site  would need path where credentials got downloaded
-        self.CREDENTIALS_FILE = '/Users/palac/Desktop/credentials.json'
-        # self.get_covid_cases = CovidCases().get_cases()
+        self.CREDENTIALS_FILE = '/Users/rodo/Downloads/credentials.json'
+        self.email ='palaciosr080@gmail.com'
+        self.get_covid_cases = CovidCases().get_cases()
+        self.get_air_quality = AirQuality().get_air_quality()
+        self.get_weather_forecast = WeatherForecast().get_weather_forecast()
 
 
     def get_calendar_service(self):
@@ -37,8 +43,8 @@ class GoogleCalendar:
         creds = None
         
         #  User needs to safe the path locally. 
-        if os.path.exists('/Users/palac/Desktop/token.pickle'):
-            with open('/Users/palac/Desktop/token.pickle', 'rb') as token:
+        if os.path.exists('/Users/rodo/Downloads/token.pickle'):
+            with open('/Users/rodo/Downloads/token.pickle', 'rb') as token:
                 creds = pickle.load(token)
         # If there are no (valid) credentials available, let the user log in.
         if not creds or not creds.valid:
@@ -60,7 +66,7 @@ class GoogleCalendar:
         TIMEZONE = 'America/Los_Angeles'
         EVENT_ID = 'primary'
         event = {
-            'summary': 'COVID cases in the US today',#will have weather,air quality , and covid cases 
+            'summary': 'COVID cases in the US today: '+ self.get_covid_cases, +' '+'the weather today is :'#will have weather,air quality , and covid cases 
             'location': 'hell',
             'start': {
             'dateTime': date.today(),#'2020-09-20T10:00:00.000-07:00', #change to dynamic
