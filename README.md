@@ -8,3 +8,5 @@ Will need to have a gmail account for Google calendar to work. Then will need to
 Weather API to request an API key go to https://openweathermap.org/api
 
 Air quality API to request an API key go to https://docs.airnowapi.org/account/request/
+
+For simplicity the user will need to input each individual API key statically to air_quality.py and weather_forecast.py found in the Api_Notifications folder. The Google email will need to be inputted into google_auth.py 
