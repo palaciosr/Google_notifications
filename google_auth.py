@@ -7,7 +7,7 @@ from google.auth.transport.requests import Request
 from httplib2 import Http
 from apiclient import discovery
 from Api_Notifications.covid_cases import CovidCases
-from Api_Notifications.air_quality import AirQuality
+# from Api_Notifications.air_quality import AirQuality
 from Api_Notifications.weather_forecast import WeatherForecast
 
 
@@ -29,7 +29,7 @@ class GoogleCalendar:
         self.CREDENTIALS_FILE = '/Users/rodo/Downloads/credentials.json'
         self.email ='palaciosr080@gmail.com'
         self.country_name,self.updated_date,self.cases,self.deaths = CovidCases().get_cases()
-        self.get_air_quality = AirQuality().get_air_quality()
+        # self.get_air_quality = AirQuality().get_air_quality()
         self.city_name,self.temperature = WeatherForecast().get_weather_forecast()
 
     def get_calendar_service(self):
@@ -60,7 +60,12 @@ class GoogleCalendar:
         return service
 
 #needs to call APIs daily 
-    def post_weather_to_calendar(self):
+    def post_to_calendar(self):
+
+        """
+        This methods uses the APIs and renders COVID cases, weather forecast and
+        air quality and sends it to the your Google calendar 
+        """
 
         TIMEZONE = 'America/Los_Angeles'
         EVENT_ID = 'primary'
@@ -68,11 +73,11 @@ class GoogleCalendar:
             'summary': 'COVID cases'+self.cases+ 'in the'+ self.country_name+ 'today:' + self.updated_date+ 'number of deaths: '+self.deaths +'the weather today is :' +self.temperature + 'in'+self.city_name,
             'location': 'hell',
             'start': {
-            'dateTime': date.today(),#'2020-09-20T10:00:00.000-07:00', #change to dynamic
+            'dateTime': date.today(),
             'timeZone': 'America/Los_Angeles'
         },
             'end': {
-            'dateTime': date.today() + timedelta(5),#'2020-09-21T10:25:00.000-07:00',
+            'dateTime': date.today() + timedelta(5),
             'timeZone': 'America/Los_Angeles'
         },
             'recurrence':[
