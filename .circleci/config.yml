@@ -20,8 +20,8 @@ jobs:
           name: Running tests
           command: |
             . venv/bin/activate
-            cd /tests
-            python3 test_covidcases.py test
-      - store_artifacts:
-          path: test-reports/
-          destination: python_app
+            
+            python3 google_auth.py 
+      # - store_artifacts:
+      #     path: test-reports/
+      #     destination: python_app
