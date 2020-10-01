@@ -1,5 +1,5 @@
 import requests 
-
+from .config_weather_forecast import API_KEY
 
 class WeatherForecast:
 
@@ -8,7 +8,7 @@ class WeatherForecast:
 
 
         self.zip_code_city = '92706'
-        self.appid = ''
+        self.appid = API_KEY
 
         self.url = requests.get('http://api.openweathermap.org/data/2.5/weather?zip='+self.zip_code_city+'&units=imperial'+'&appid='+self.appid)
 
