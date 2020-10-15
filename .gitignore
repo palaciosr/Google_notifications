@@ -7,3 +7,5 @@
 /Api_Notifications/config_air_quality.py
 
 __pycache__
+
+token.pickle
