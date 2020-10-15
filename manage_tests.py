@@ -1,6 +1,6 @@
-from tests.tests_covidcases import check_api
+from tests.tests_covidcases import ApiTest
 
 #check the API for covid cases works 
-x = check_api()
+x = ApiTest().check_api()
 x
 
