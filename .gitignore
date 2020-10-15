@@ -3,3 +3,5 @@
 /Api_Notifications/config_weather_forecast.py 
 
 /tests/__pycache__
+
+/Api_Notifications/config_air_quality.py
