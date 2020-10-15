@@ -10,6 +10,3 @@ class ApiTest(unittest.TestCase):
         print(response.status_code)
 
         self.assertEqual(response.status_code,200)
-
-
-ApiTest().test_check_api()
