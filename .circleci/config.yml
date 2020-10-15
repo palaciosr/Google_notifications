@@ -21,7 +21,7 @@ jobs:
           command: |
             . venv/bin/activate
             
-            python3 google_auth.py 
+            python3 -m unittest manage_tests.py 
       # - store_artifacts:
       #     path: test-reports/
       #     destination: python_app
