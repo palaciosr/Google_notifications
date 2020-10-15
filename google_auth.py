@@ -26,7 +26,7 @@ class GoogleCalendar:
     
         #this would be after the user allow permission to the google calendar API
         # include site  would need path where credentials got downloaded
-        self.CREDENTIALS_FILE = '/Users/rodo/Downloads/credentials.json'
+        self.CREDENTIALS_FILE = '/Users/rodo/Desktop/credentials.json'
         self.email ='palaciosr080@gmail.com'
         self.country_name,self.updated_date,self.cases,self.deaths = CovidCases().get_cases()
         # self.get_air_quality = AirQuality().get_air_quality()
@@ -42,8 +42,8 @@ class GoogleCalendar:
         creds = None
         
         #  User needs to safe the path locally. 
-        if os.path.exists('/Users/rodo/Downloads/token.pickle'):
-            with open('/Users/rodo/Downloads/token.pickle', 'rb') as token:
+        if os.path.exists('token.pickle'):
+            with open('token.pickle', 'rb') as token:
                 creds = pickle.load(token)
         # If there are no (valid) credentials available, let the user log in.
         if not creds or not creds.valid:
@@ -54,7 +54,7 @@ class GoogleCalendar:
                     self.CREDENTIALS_FILE, self.SCOPES)
                 creds = flow.run_local_server(port=0)
             # Save the credentials for the next run
-            with open('/Users/palac/Desktop/token.pickle', 'wb') as token:
+            with open('token.pickle', 'wb') as token:
                 pickle.dump(creds, token)
         service = build('calendar', 'v3', credentials=creds)
         return service
