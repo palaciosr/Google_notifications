@@ -31,11 +31,6 @@ class GoogleCalendar:
         self.CREDENTIALS_FILE = 'credentials.json'
         self.email = recipient
 
-        #seperate this 
-        self.country_name,self.updated_date,self.cases,self.deaths = CovidCases().get_cases()
-        # self.get_air_quality = AirQuality().get_air_quality()
-        self.city_name,self.temperature = WeatherForecast().get_weather_forecast()
-
     def get_calendar_service(self):
         """
         The file token.pickle stores the user's access and refresh tokens, and is
@@ -64,7 +59,7 @@ class GoogleCalendar:
         return service
 
 
-    def event(self):
+    def event(self,**args):
 
         """
         This method creates an event using summary as the text
@@ -121,4 +116,13 @@ class GoogleCalendar:
 
 if __name__ == '__main__':
 
-    GoogleCalendar().post_to_calendar()
+    google_calendar = GoogleCalendar('email')
+
+    country_name,updated_date,cases,deaths = CovidCases().get_cases()
+    # self.get_air_quality = AirQuality().get_air_quality()
+    city_name,temperature = WeatherForecast().get_weather_forecast()
+
+    event = google_calendar.event(country_name,updated_date,cases,deaths,city_name,temperature)
+
+    #Sending to event API responses for COVID, air quality, and weather forecast.
+    GoogleCalendar().post_to_calendar(event)
