@@ -2,4 +2,4 @@
 
 pip install -r requirements.txt
 
-python google_auth.py
+python google_calendar.py
