@@ -6,9 +6,9 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from httplib2 import Http
 from apiclient import discovery
-from Api_Notifications.covid_cases import CovidCases
+from Api_Notifications.CovidCases import CovidCases
 # from Api_Notifications.air_quality import AirQuality
-from Api_Notifications.weather_forecast import WeatherForecast
+from Api_Notifications.WeatherForecast import WeatherForecast
 
 
 class GoogleCalendar:
@@ -16,6 +16,8 @@ class GoogleCalendar:
     This class authenticates to Google calendar in order to
     post events. 
     google_calendar = GoogleCalendar('palaciosr080@gmail.com')
+
+    Post an event as a string with one or more arguments 
 
     post_event = google_calendar.post_to_calendar(event)
 
@@ -59,7 +61,7 @@ class GoogleCalendar:
         return service
 
 
-    def event(self,**args):
+    def event(self,*args):
 
         """
         This method creates an event using summary as the text
@@ -73,7 +75,7 @@ class GoogleCalendar:
         TIMEZONE = 'America/Los_Angeles'
 
         event = {
-            'summary': 'COVID cases'+self.cases+ 'in the'+ self.country_name+ 'today:' + self.updated_date+ 'number of deaths: '+self.deaths +'the weather today is :' +self.temperature + 'in'+self.city_name,
+            'summary': 'COVID cases'+str(cases)+ 'in the'+ str(country_name)+ 'today:' + str(updated_date)+ 'number of deaths: '+str(deaths) +'the weather today is :' +str(temperature) + 'in'+str(city_name),
             'location': 'hell',
             'start': {
             'dateTime': date.today(),
