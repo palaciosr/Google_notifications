@@ -1,10 +1,13 @@
 from __future__ import absolute_import
 import requests
 import unittest
-# from ..Api_Notifications.config_weather_forecast import API_KEY
-
-
 from ..Api_Notifications.config_weather_forecast import API_KEY
+
+# import os 
+
+# os.path.abspath("/Google_notifications/Api_Notifications")
+
+# from Api_Notifications.config_weather_forecast import API_KEY
 
 class TestWeatherForecast(unittest.TestCase):
 
