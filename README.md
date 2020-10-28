@@ -3,7 +3,7 @@ Will provide air quality, weather forecast, and covid cases from current locatio
 
 
 # Prerequisites
-Will need to have a gmail account for Google calendar to work. Then will need to go to: https://developers.google.com/calendar/quickstart/python , and enable the Google calendar API, which will give you the keys to authenticate. Save those keys to a path, save that path as it would be needed for google_auth.py, to authenticate. Once this is ran the first time the terminal will take the user to their email login they have to login and give quickstart access.
+Will need to have a gmail account for Google calendar to work. Then will need to go to: https://developers.google.com/calendar/quickstart/python , and enable the Google calendar API, which will give you the keys to authenticate. Save those keys to the root of Google_notifications path, this is needed for google_auth.py, to authenticate.On google_auth.py line 143: email should be replace by your google email. Once this is ran the first time the terminal will take the user to their email login they have to login and give quickstart access.
 
 Weather API to request an API key go to https://openweathermap.org/api
 
